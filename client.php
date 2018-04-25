@@ -4,16 +4,22 @@
     {
       public function __construct()
       {
-        $params = array('location' => 'http://localhost/server.php',
+        // Location is the SOAP server
+        // URI is the namespace of the SOAP server
+        $options = array('location' => 'http://localhost/server.php',
                         'uri' => 'http://localhost/server.php',
-                        'trace' => 1); 
+                        'trace' => 1);
+        /*$options = array('location' => 'https://37812a33.ngrok.io/ping.svc',
+                        'uri' => 'http://tempuri.org/',
+                        'trace' => 1);*/ 
         
-        $this->instance = new SoapClient(NULL, $params);
+        $this->instance = new SoapClient(NULL, $options);
       } 
       
-      public function getName($id_array)
+      public function getName($data)
       {
-        return $this->instance->__soapCall('getStudentName', $id_array);
+        return $this->instance->__soapCall('getReverseName', $data);
+        // return $this->instance->__soapCall('', $data);
       }
     }
 
